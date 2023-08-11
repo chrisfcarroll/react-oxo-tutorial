@@ -1,29 +1,10 @@
 import React, {MouseEventHandler, useState} from "react";
+import {GameState} from "../Models/OxoGame";
 
 function GameSquare({id, gameBoard, onSquareClick} :{id:number, gameBoard:string[], onSquareClick:MouseEventHandler}) {
     return <button className="square" aria-label={'square-'+id} onClick={onSquareClick}>{gameBoard[id]}</button>;
 }
-class GameState{
-    playMove(playedAt:number):GameState{
-        const nextBoard=this.board.slice()
-        nextBoard[playedAt]=this.playerOnMove
-        return new GameState(nextBoard,this.nextPlayerOnMove(),[...this.history, this])
-    }
 
-    board:string[]
-    playerOnMove:string
-    history:GameState[]
-    constructor(board: string[] = Array(10).fill(' '),
-                playerOnMove: 'X'|'O' = 'X',
-                history:GameState[] = []
-    )
-    {
-        this.board = board ?? Array(10).fill(' ');
-        this.playerOnMove = playerOnMove ?? 'X';
-        this.history=history ?? []
-    }
-    private nextPlayerOnMove = () => this.playerOnMove === 'X' ? 'O' : 'X';
-}
 
 export default function Board(){
 
