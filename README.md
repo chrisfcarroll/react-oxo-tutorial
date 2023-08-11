@@ -4,6 +4,13 @@
 - The Testing Library for React : https://testing-library.com/docs/react-testing-library/intro/
 - Typescript https://www.typescriptlang.org/docs/handbook/intro.html
 
+Whilst the React getting started tutorial is great, you have to look elsewhere to get started with react and unit testing. As ever, “elsewhere” is confused by legacy documentation. I feel like:
+- https://jestjs.io/docs/tutorial-react#dom-testing
+- https://testing-library.com/docs/react-testing-library/intro/
+are as good as I've found in 2023 for “get started with unit testing in react”
+
+To use Testing Library, you will want to spend half an hour learning [ARIA basics](https://www.w3.org/TR/using-aria/), including how an <em>accessible name</em> is computed, and following some of the links from there, e.g. https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles.
+
 ## From the “Getting Started with Create React App” README
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
