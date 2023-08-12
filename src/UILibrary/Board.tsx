@@ -6,7 +6,7 @@ function GameSquare({id, gameBoard, onSquareClick} :{id:number, gameBoard:string
 }
 
 
-export default function Board(){
+export default function Board( attributes:React.HTMLAttributes<HTMLElement>){
 
     const [game,setGame] = useState(new GameState())
 
@@ -15,7 +15,7 @@ export default function Board(){
         setGame(game.playMove(id))
     }
 
-    return (<article aria-label="game-board">
+    return (<article aria-label="game-board" {...attributes}>
         <div className='board-row'>
             <GameSquare id={1} gameBoard={game.board} onSquareClick={()=>handleClick(1)}/>
             <GameSquare id={2} gameBoard={game.board} onSquareClick={()=>handleClick(2)}/>
