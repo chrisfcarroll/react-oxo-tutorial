@@ -11,3 +11,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+[aria-label="game-board"].full-width{
+  height:80vw;
+  width:80vw;
+  font-size: 26vw;
+  margin:auto;
+}
+[aria-label="game-board"].half-width{
+  height:40vw;
+  width:40vw;
+  font-size: 13vw;
+  margin:auto;
+}
+[aria-label="game-board"].small-inline{
+  height:10rem;
+  width:10rem;
+  font-size:3rem;
+}
+[aria-label="game-board"] .board-row{
+  height:33%;
+  width:100%;
+}
+[aria-label="game-board"] .square {
+  height:100%;
+  width:33%;
+}

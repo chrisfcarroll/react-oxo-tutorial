@@ -1,29 +1,20 @@
-import React, {useState} from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import MessageButton from "./UILibrary/MessageButton";
 import AboutUser from "./UILibrary/AboutUser";
 import Board from "./UILibrary/Board";
 
 
 
-function App() {
-    const [globalCount,setGlobalCount]=useState(0);
-    function handleGlobalClick(){
-        setGlobalCount(globalCount+1)
-    }
-  return (
+export default function App() {
+  // noinspection SpellCheckingInspection
+    return (
     <div className="App">
-        <Board/>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
-      <p>
-        React Quick Start 1 <MessageButton key="message1" globalCount={globalCount} onGlobalClick={handleGlobalClick}/>
-      </p>
-      <p>
-        React Quick Start 2 <MessageButton key="message2" globalCount={globalCount} onGlobalClick={handleGlobalClick}/>
-      </p>
+        <Board className='full-width'/>
+        <div style={{display:'flex', alignContent:'center',alignItems:"center"}}>
+          <Board className='half-width'/>
+          <Board className='half-width'/>
+        </div>
+      <br/>
       <AboutUser
           firstName={"Joe"}
           lastName={"Bloggs"}
@@ -33,5 +24,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

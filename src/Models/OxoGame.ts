@@ -1,5 +1,7 @@
 
 export type XorO = 'X'|'O'
+export type nbsp = '\u00A0'
+export const unplayedSquare:nbsp = '\u00A0'
 
 
 export class GameState{
@@ -12,12 +14,12 @@ export class GameState{
     board:string[]
     playerOnMove:XorO
     history:GameState[]
-    constructor(board: string[] = Array(10).fill(' '),
+    constructor(board: string[] = Array(10).fill(unplayedSquare),
                 playerOnMove: XorO = 'X',
                 history:GameState[] = []
     )
     {
-        this.board = board ?? Array(10).fill(' ');
+        this.board = board ?? Array(10).fill(unplayedSquare);
         this.playerOnMove = playerOnMove ?? 'X';
         this.history=history ?? []
     }

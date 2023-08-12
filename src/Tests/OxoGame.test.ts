@@ -1,6 +1,8 @@
 import {GameState,XorO} from "../Models/OxoGame"
 
-test('New Noughts and Crosses game has 9 playable squares', ()=>{
+describe('When a new Noughts and Crosses game is created', ()=>{
+
+    test('The game has 9 playable squares', ()=>{
 
     let state= new GameState()
     for(let i= 1; i <= 9 ; i++){
@@ -8,4 +10,5 @@ test('New Noughts and Crosses game has 9 playable squares', ()=>{
         state=state.playMove(i)
         expect(state.board[i]).toBe(player)
     }
+})
 })
