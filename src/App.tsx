@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
 import AboutUser from "./UILibrary/AboutUser";
-import Board from "./UILibrary/Board";
+import OxoBoard from "./UILibrary/OxoBoard";
+import {GameState} from "./Models/OxoGame"
 
 
 
@@ -9,10 +10,10 @@ export default function App() {
   // noinspection SpellCheckingInspection
     return (
     <div className="App">
-        <Board className='full-width'/>
+        <OxoBoard className='full-width' gameState={new GameState()}/>
         <div style={{display:'flex', alignContent:'center',alignItems:"center"}}>
-          <Board className='half-width'/>
-          <Board className='half-width'/>
+          <OxoBoard className='half-width'/>
+          <OxoBoard className='half-width'/>
         </div>
       <br/>
       <AboutUser

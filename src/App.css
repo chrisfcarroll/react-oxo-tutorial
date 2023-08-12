@@ -1,7 +1,34 @@
 .App {
 }
 
-@media (prefers-reduced-motion: no-preference) {
-}
+@media (prefers-reduced-motion: no-preference) {}
 
-.about-page h1 { color: blue}
+[aria-label="game-board"].full-width{
+  height:80vw;
+  width:80vw;
+  margin:auto;
+}
+[aria-label="game-board"].half-width{
+  height:40vw;
+  width:40vw;
+  margin:auto;
+}
+[aria-label="game-board"].small-inline{
+  height:10rem;
+  width:10rem;
+}
+[aria-label="game-board"] .board-row{
+  height:30%;
+  width:100%;
+}
+[aria-label="game-board"] .square {
+  height:100%;
+  width:33%;
+}
+[aria-label="game-board"].full-width .square {   font-size: 25vw; }
+[aria-label="game-board"].half-width .square {   font-size: 13vw; }
+[aria-label="game-board"].small-inline .square {   font-size: 3rem; }
+
+[aria-label="game-board"] .board-controls {
+  margin-top: 0.5rem
+}

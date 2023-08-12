@@ -39,7 +39,7 @@ describe('When a new Noughts and Crosses game is created', ()=>{
     })
 
 
-    test('Game state is notWon whilst not won', ()=>{
+    test('Game state is not won whilst not won', ()=>{
 
         let state= new GameState()
         for(let i= 1; i <= 6 ; i++){
@@ -102,4 +102,34 @@ describe('When a game is won', ()=>{
         }
     })
 
+})
+
+describe('When a move is retracted',()=>{
+
+    test('On a new board, nothing is changed',()=>{
+        let newGame= new GameState()
+        let actual= newGame.retractMove()
+        expect(actual).toEqual(newGame)
+    })
+
+    test('on an in-progress game, it goes back a move',()=>{
+        let state= new GameState()
+
+        for(let i=1; i<=6; i++){
+            let nextState=state.playMove(i)
+            let retracted=nextState.retractMove()
+            expect(retracted).toBe(state)
+            state=nextState
+        }
+    })
+
+    test('on a won game, it is no longer won',()=>{
+        //A
+        let state= new GameState();
+        [1,2,3,4,5,6,7].forEach( i=>state=state.playMove(i))
+        expect(state.winner).toBe('X')
+        //A
+        let retracted=state.retractMove()
+        expect(retracted.winner).toBeUndefined()
+    })
 })

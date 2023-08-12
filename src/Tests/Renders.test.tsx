@@ -1,7 +1,8 @@
 import React from 'react';
 import {fireEvent, render, screen} from '@testing-library/react';
 import App from '../App';
-import Board from "../UILibrary/Board";
+import OxoBoard from "../UILibrary/OxoBoard";
+import {GameState, unplayedSquare} from "../Models/OxoGame"
 
 
 describe('When the App renders', ()=>{
@@ -16,7 +17,7 @@ describe('When the App renders', ()=>{
 
 describe('When new Board renders', ()=>{
   test('A new Board component renders a Board with empty squares numbered 1 to 9', ()=>{
-    render(<Board/>)
+    render(<OxoBoard/>)
     let squares=screen.getAllByRole('button')
     for(let i= 1; i <= 9; i++){
       expect(squares[i-1]).toHaveAccessibleName('square-'+i.toString())
@@ -29,14 +30,14 @@ describe('When new Board renders', ()=>{
 describe('When playing on the rendered Board', ()=>{
 
   test('Clicking in a new Board plays an X', ()=>{
-    render(<Board/>)
+    render(<OxoBoard/>)
     let square1= screen.getByLabelText('square-1')
     fireEvent.click(square1)
     expect(square1).toHaveTextContent('X')
   })
 
   test('Clicking twice in a new Board plays X then O', ()=>{
-    render(<Board/>)
+    render(<OxoBoard/>)
     let square1= screen.getByLabelText('square-1')
     fireEvent.click(square1)
     expect(square1).toHaveTextContent('X')
@@ -46,7 +47,7 @@ describe('When playing on the rendered Board', ()=>{
   })
 
   test('Playing twice in the same place is ignored', ()=>{
-    render(<Board/>)
+    render(<OxoBoard/>)
     let square1= screen.getByLabelText('square-1')
     fireEvent.click(square1)
     expect(square1).toHaveTextContent('X')
@@ -54,5 +55,16 @@ describe('When playing on the rendered Board', ()=>{
     expect(square1).toHaveTextContent('X')
   })
 
+  test('Pressing the retract button retracts the last move', ()=>{
+    let gameState=new GameState().playMove(1)
+    render(<OxoBoard gameState={gameState}/>)
+    let retractButton=screen.getByLabelText('Retract')
+    //
+    fireEvent.click(retractButton)
+    //
+    let square1= screen.getByLabelText('square-1')
+    console.log(square1.outerHTML)
+    expect(square1.outerHTML).toMatch('&nbsp;')
+  })
 })
 

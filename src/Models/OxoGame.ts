@@ -1,24 +1,28 @@
-import {Simulate} from "react-dom/test-utils";
-import play = Simulate.play;
-
 export type XorO = 'X'|'O'
 export type nbsp = '\u00A0'
 export const unplayedSquare:nbsp = '\u00A0'
 
 
 export class GameState{
+    winner:XorO|undefined
+    board:string[]
+    playerOnMove:XorO
+    history:GameState[]
+
     playMove(playedAt:number):GameState{
         if(this.winner)return this
         if (this.board[playedAt] !== unplayedSquare)return this
         //
         const nextBoard = this.board.slice()
         nextBoard[playedAt] = this.playerOnMove
+        Object.freeze(this)
         return new GameState(nextBoard, this.nextPlayerOnMove(), [...this.history, this])
     }
-    winner:XorO|undefined
-    board:string[]
-    playerOnMove:XorO
-    history:GameState[]
+    retractMove():GameState{
+        if(!this.history.length)return this;
+        return this.history[this.history.length-1]
+    }
+
     constructor(board: string[] = Array(10).fill(unplayedSquare),
                 playerOnMove: XorO = 'X',
                 history:GameState[] = []
@@ -51,7 +55,7 @@ export class GameState{
             }
             return undefined
         })
-        const winner= won.find(p=> p != undefined);
+        const winner= won.find(p=> !!p );
         if(winner){
             this.winner=winner as XorO
             return true;
