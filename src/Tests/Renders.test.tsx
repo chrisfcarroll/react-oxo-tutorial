@@ -8,10 +8,10 @@ describe('When the App renders', ()=>{
 
   test('App renders game board', ()=>{
     render(<App/>)
-    const expected = screen.getByRole('article',{name:/game-board/i})
-    expect(expected).toBeVisible()
+    const renderedBoards = screen.getAllByRole('article',{name:/game-board/i})
+    expect(renderedBoards.length).toBeGreaterThan(0)
+    expect(renderedBoards[0]).toBeVisible()
   })
-
 })
 
 describe('When new Board renders', ()=>{
@@ -44,5 +44,15 @@ describe('When playing on the rendered Board', ()=>{
     fireEvent.click(square2)
     expect(square2).toHaveTextContent('O')
   })
+
+  test('Playing twice in the same place is ignored', ()=>{
+    render(<Board/>)
+    let square1= screen.getByLabelText('square-1')
+    fireEvent.click(square1)
+    expect(square1).toHaveTextContent('X')
+    fireEvent.click(square1)
+    expect(square1).toHaveTextContent('X')
+  })
+
 })
 

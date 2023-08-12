@@ -1,5 +1,5 @@
 import React, {MouseEventHandler, useState} from "react";
-import {GameState} from "../Models/OxoGame";
+import {GameState, type nbsp, unplayedSquare} from "../Models/OxoGame";
 
 function GameSquare({id, gameBoard, onSquareClick} :{id:number, gameBoard:string[], onSquareClick:MouseEventHandler}) {
     return <button className="square" aria-label={'square-'+id} onClick={onSquareClick}>{gameBoard[id]}</button>;
@@ -11,7 +11,8 @@ export default function Board( attributes:React.HTMLAttributes<HTMLElement>){
     const [game,setGame] = useState(new GameState())
 
     function handleClick(id:number){
-        console.log('clicked',id)
+        if (game.board[id] !== unplayedSquare) {return;}
+        console.log('clicked', id)
         setGame(game.playMove(id))
     }
 
