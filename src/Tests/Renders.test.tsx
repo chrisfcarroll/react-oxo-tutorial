@@ -7,11 +7,11 @@ import {GameState, unplayedSquare} from "../Models/OxoGame"
 
 describe('When the App renders', ()=>{
 
-  test('App renders game board', ()=>{
+  test('App renders navigation', ()=>{
     render(<App/>)
-    const renderedBoards = screen.getAllByRole('article',{name:/game-board/i})
-    expect(renderedBoards.length).toBeGreaterThan(0)
-    expect(renderedBoards[0]).toBeVisible()
+    const renderedNavigation = screen.getAllByRole('navigation')
+    expect(renderedNavigation.length).toBeGreaterThan(0)
+    expect(renderedNavigation[0]).toBeVisible()
   })
 })
 

@@ -3,6 +3,9 @@
 
 @media (prefers-reduced-motion: no-preference) {}
 
+nav { margin: 1rem}
+nav a { padding: 0.2rem; margin:0.2rem; border-radius: 0.1rem; border:1px darkgrey solid;}
+
 [aria-label="game-board"].full-width{
   height:80vw;
   width:80vw;
